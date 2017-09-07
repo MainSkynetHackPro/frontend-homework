@@ -1,25 +1,24 @@
 'use strict';
 
-
-function plainify(object) {
+const plainify = (object) => {
     let data = {};
 
-    function iterator(object, primary_index) {
-        let secondary_index = '';
+    const iterator = (object, primaryIndex = null) => {
+        let secondaryIndex = '';
 
-        if (typeof primary_index !== 'undefined') {
-            secondary_index = primary_index + '.';
-        }
+        if (primaryIndex)
+            secondaryIndex = primaryIndex + '.';
+
 
         for (let item in object) {
             if (typeof(object[item]) === 'object') {
-                iterator(object[item], secondary_index + item);
+                iterator(object[item], secondaryIndex + item);
             } else {
-                data[secondary_index + item] = object[item];
+                data[secondaryIndex + item] = object[item];
             }
         }
-    }
+    };
 
     iterator(object);
     return data
-}
+};

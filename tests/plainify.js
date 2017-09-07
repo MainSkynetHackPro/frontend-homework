@@ -49,39 +49,36 @@ QUnit.module('Тестируем функцию plainify', function () {
 		assert.deepEqual(plainify(nested2), plain2);
 	});
 
-    QUnit.module('Тестируем функцию plainify', function () {
-        QUnit.test('plainify обрабатывает сложный объект', function (assert) {
-            const nested3 = {
-                deep: {
-                    var1: {
-                        s: 1,
-                        k: {
-                            a: {
-                                g: 2
-                            },
-                            b: 1
-                        }
-                    },
+    QUnit.test('plainify обрабатывает сложный объект', function (assert) {
+        const nested3 = {
+            deep: {
+                var1: {
+                    s: 1,
+                    k: {
+                        a: {
+                            g: 2
+                        },
+                        b: 1
+                    }
+                },
+                var2: {
+                    var1: "var1",
                     var2: {
-                        var1: "var1",
-                        var2: {
-                            var1: "1"
-                        }
+                        var1: "1"
                     }
                 }
-            };
+            }
+        };
 
-            const plain3 = {
-                "deep.var1.s": 1,
-                "deep.var1.k.a.g": 2,
-                "deep.var1.k.b": 1,
-                "deep.var2.var1": "var1",
-                "deep.var2.var2.var1": "1"
-            };
+        const plain3 = {
+            "deep.var1.s": 1,
+            "deep.var1.k.a.g": 2,
+            "deep.var1.k.b": 1,
+            "deep.var2.var1": "var1",
+            "deep.var2.var2.var1": "1"
+        };
 
-            assert.deepEqual(plainify(nested3), plain3);
-
-
-        });
+        assert.deepEqual(plainify(nested3), plain3);
     });
+
 });
